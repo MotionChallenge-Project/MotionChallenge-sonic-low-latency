@@ -1,0 +1,20 @@
+{
+  "model": "sonic-low-latency",
+  "display_name": "SONIC Low-Latency",
+  "submitter": "Motion Challenge",
+  "submission_type": "maintainer reproduction, not author submission",
+  "upstream": "https://github.com/NVlabs/GR00T-WholeBodyControl",
+  "source_commit": "45c03facbf848e0c743091b7d9c17952096ff908",
+  "checkpoint_sha256": "c4ac2e74045e7cbfb568f15e6bf47ea7ce023df7a94322af50be223e0a628bab",
+  "author_inference_review": "passed: 160 randomized C++ gatherer comparisons, 4 resets, native encoder/decoder and motor-target parity",
+  "notes": "G1 encoder mode 0 with the author release observation configuration, history order, PD gains and unclipped actions.",
+  "benchmark_physics": "Shared canonical G1 nominal physics; not the author training simulator",
+  "encoder_sha256": "60be43157f57d812f38bdbb740a5de5d5d070e8840d9edc16f02a91a6d06255b",
+  "inference_adaptations": [
+    "CPU ONNX Runtime executes the author encoder and decoder; no weight conversion.",
+    "Native cold StateLogger zero padding; no pre-roll simulation.",
+    "G1 encoder mode 0; unused teleop/SMPL fields remain zero.",
+    "Canonical benchmark physics is separate from author training physics."
+  ],
+  "parity_scope": "Author observation gatherers and history padding are compiled from pinned upstream C++; both inference paths use CPU ONNX Runtime with original encoder and decoder. This does not establish TensorRT numerical equivalence or match author training physics."
+}
