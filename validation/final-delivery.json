@@ -2,7 +2,7 @@
   "model": "sonic-low-latency",
   "status": "passed",
   "errors": [],
-  "core_commit": "2221fab60a90adc3c85b1dfd438e00244fb58263",
+  "core_commit": "e4cb035b9f95ec820c4a0384df1f4ebdcbc0abf4",
   "runtime_sha256": "3a33a78d639f515422252ba4753924c9660e2808487057158ed8456153819e3c",
   "locked_environment_and_cli": true,
   "own_core_import": "/mnt/volumes/nexus-train-bd-ga/swd/motionchallenge-mjwarp/MotionChallenge-sonic-low-latency/MotionChallenge-Core/src/motion_challenge/__init__.py",
