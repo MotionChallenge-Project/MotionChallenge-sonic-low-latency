@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "scope": "Complete files from pinned public artifact URLs downloaded on macOS and independently checked against the full SHA256 and byte size.",
+  "artifacts": [
+    {
+      "model": "sonic-low-latency",
+      "component": "encoder",
+      "url": "https://huggingface.co/nvidia/GEAR-SONIC/resolve/6733128a3d8a523b1418b06bca3cdf61c8b0987f/low_latency/model_encoder.onnx",
+      "sha256": "60be43157f57d812f38bdbb740a5de5d5d070e8840d9edc16f02a91a6d06255b",
+      "bytes": 45933505,
+      "status": "full_download_sha256_verified"
+    }
+  ]
+}

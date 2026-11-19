@@ -1,0 +1,51 @@
+{
+  "model": "sonic-low-latency",
+  "scope": "Current evidence index; separate from inference admission",
+  "reports": {
+    "inference-network-proof.json": {
+      "status": "passed",
+      "sha256": "866313086f867b57597704a9388daa0b74cc813680bd01dd2a1434dcac0a049b",
+      "scope": "Original ONNX versus CPU and GPU tensor inference"
+    },
+    "tensor-observation-parity.json": {
+      "status": "passed",
+      "sha256": "9642a7255fb8d4cdfccecc997be4de819a28ac7f4b4614d5d47315742d7c0a6a",
+      "scope": "Original observations, history or recurrent state, motion resets and joint targets"
+    },
+    "full-batch-4096.json": {
+      "status": "passed",
+      "sha256": "e5c50e74065569ae708e521e538ce6530ecdbaa9a1debfd6813b1a327bf13b36",
+      "scope": "4096 worlds in one forward call"
+    },
+    "conversion-cache-check.json": {
+      "status": "passed",
+      "sha256": "c6d0287ca4086cdca05b174c77ec3fb9331e6c065eef7197cb576ac327883839",
+      "scope": "Unified converter entrypoint; repository files unchanged"
+    },
+    "public-artifact-download.json": {
+      "status": "passed",
+      "sha256": "2fe1161feb0ac050bcda0c3f25f1c75efefb7f002d78c7d1900d9ced625c693a",
+      "scope": "Complete files downloaded from pinned public URLs; byte size and full SHA-256 verified"
+    },
+    "delivery-check.json": {
+      "status": "passed",
+      "sha256": "12affe4261db25cbe2f71753497ad17dec82b5b24a837c7e35bb7db3dd73cc25",
+      "scope": "Model-local production modules, pinned Core dependency, locked environment and current commands"
+    },
+    "checkpoint-origin.json": {
+      "status": "author_release_verified",
+      "sha256": "8ace25382d77ed089e4c085283fb75d5a29f56116a3eddfd473aaa84fc870c4b",
+      "scope": "Publisher release identity, original-file hashes and official-entry eligibility"
+    },
+    "lafan-evaluation.json": {
+      "status": "full_rollout_and_independent_trace_verified",
+      "sha256": "511bc038c2e5e80b4d7c09dd1ac1b03d86e27a47c4e87a76912a0a55a223411b",
+      "result_sha256": "e141208fcd66a9d156f4f8d4a72b8ed9bfa08aee6efdd0ef38d413f0693215fd"
+    },
+    "seed-evaluation.json": {
+      "status": "full_rollout_and_independent_trace_verified",
+      "sha256": "d9391e28f29395a19f830ff6448a9ac0c964fcaa21dfeaada184387787217aea",
+      "result_sha256": "ff52ec31faaecc07960350bc41f809243221c0b705b15ef903b8523b68367cbc"
+    }
+  }
+}

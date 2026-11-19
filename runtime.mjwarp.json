@@ -1,0 +1,43 @@
+{
+  "id": "sonic-low-latency-g1-v1",
+  "entrypoint": "restricted:create",
+  "control_period_s": 0.02,
+  "reference_offsets_s": [
+    0.0,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1,
+    0.12,
+    0.14,
+    0.16,
+    0.18
+  ],
+  "reference_history_s": 0,
+  "reference_preview_s": 0.18,
+  "state_access": "proprioceptive-no-position-no-linear-velocity-v1",
+  "action_mode": "joint-pd-feedforward",
+  "weights": "checkpoints/policy.onnx",
+  "weights_url": "https://huggingface.co/nvidia/GEAR-SONIC/resolve/6733128a3d8a523b1418b06bca3cdf61c8b0987f/low_latency/model_decoder.onnx",
+  "weights_sha256": "c4ac2e74045e7cbfb568f15e6bf47ea7ce023df7a94322af50be223e0a628bab",
+  "inference_config": "policy.json",
+  "inference_config_sha256": "9613e85f236b9dc6a5d8d520e100b9921d2a5b2b1d400cca6366c41070099193",
+  "source_repository": "https://github.com/NVlabs/GR00T-WholeBodyControl",
+  "source_commit": "45c03facbf848e0c743091b7d9c17952096ff908",
+  "official": false,
+  "artifacts": {
+    "encoder": {
+      "path": "checkpoints/encoder.onnx",
+      "sha256": "60be43157f57d812f38bdbb740a5de5d5d070e8840d9edc16f02a91a6d06255b",
+      "url": "https://huggingface.co/nvidia/GEAR-SONIC/resolve/6733128a3d8a523b1418b06bca3cdf61c8b0987f/low_latency/model_encoder.onnx"
+    }
+  },
+  "observation_contract": {
+    "admission_record": "admission.mjwarp.json",
+    "admission_sha256": "cfc2966186317a989fb1b5512255ad9ea8792c5cd88f8f3463e12983ad327618"
+  },
+  "migration_status": "inference_verified",
+  "tensor_entrypoint": "tensor_adapter:TensorSONIC",
+  "tensor_conversion": "convert_weights:prepare"
+}

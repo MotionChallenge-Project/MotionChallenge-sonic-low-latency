@@ -1,15 +1,38 @@
-# Native inference validation
+# Validation
 
-`native-parity.json` is the original 160-case, four-reset report from the pinned
-author C++ observation gatherers, encoder, decoder and motor-target comparison.
-The script raises an error if its stated numerical tolerances are exceeded.
+Inference admission binds the original checkpoint, model configuration, tensor implementation and fixed parity evidence. Full dataset evaluation and clean-run comparisons have separate reports.
 
-Run with the author checkout at `runtime.json` → `source_commit` and the original
-SHA256-verified encoder and decoder from `runtime.json`:
+| Check | Status | Evidence |
+| --- | --- | --- |
+| Extracted-network parity | passed | [Original ONNX versus CPU and GPU tensor inference](inference-network-proof.json) |
+| Deployment parity | passed | [Original observations, history or recurrent state, motion resets and joint targets](tensor-observation-parity.json) |
+| Full-batch inference | passed | [4096 worlds in one forward call](full-batch-4096.json) |
+| Fresh-cache conversion | passed | [Unified converter entrypoint; repository files unchanged](conversion-cache-check.json) |
+| Public auxiliary weights | passed | [Complete files downloaded from pinned public URLs; byte size and full SHA-256 verified](public-artifact-download.json) |
+| Independent delivery | passed | [Model-local production modules, pinned Core dependency, locked environment and current commands](delivery-check.json) |
+| Checkpoint origin | author_release_verified | [Publisher release identity, original-file hashes and official-entry eligibility](checkpoint-origin.json) |
+
+The recorded 4096-world actor check takes 34.40 ms per warm forward call and allocates at most 0.423 GiB of PyTorch tensors. This measures policy inference separately from complete simulation.
+
+## Full dataset evaluation
+
+Control and scoring use 20 ms periods, four 5 ms physics steps, contact sliding friction 1.0 and Newton maximum 50 iterations. The default batch contains `min(motion count, 4096)` worlds. Full-motion and first-failure-prefix scores are recorded separately.
+
+| Dataset | Motions | Successful motions | Mean completion | Rollout seconds | Evidence |
+| --- | ---: | ---: | ---: | ---: | --- |
+| LAFAN | 40 | 26 | 0.81691175 | 489.32 | [Independent trace receipt](lafan-evaluation.json) |
+| SEED | 129561 | 129190 | 0.99825411 | 1218.30 | [Independent trace receipt](seed-evaluation.json) |
+
+Rollout time includes policy inference, physics, scoring, slot refill and trace recording; it excludes preparation and initial reset. Independent CPU verification recomputes reference interpolation, FK, failures and scores from every recorded sample.
+
+## Reproduction
+
+Run the dataset command from the repository README with a fresh `--cache` and `--output`. The command downloads and checks the original model files, prepares the selected original dataset, converts the model, completes the rollout and independently verifies its traces. Compare two complete results with:
 
 ```bash
-uv run validate_inference.py . /path/to/author-source /path/to/decoder.onnx /path/to/encoder.onnx
+uv run python -m motion_challenge.evaluation.reproduction /path/to/first/result.json /path/to/second/result.json --output /path/to/comparison.json
 ```
 
-This validates CPU inference. It does not compare TensorRT or replace the
-benchmark's shared physics and scoring.
+The comparison checks dataset, model, physics and rollout identities and both trace receipts. Its pipeline status and numerical differences are separate fields.
+
+No same-identity clean-run comparison is included in this repository yet.

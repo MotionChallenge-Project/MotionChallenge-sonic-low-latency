@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "model": "sonic-low-latency",
+  "runtime_sha256": "3a33a78d639f515422252ba4753924c9660e2808487057158ed8456153819e3c",
+  "admission_sha256": "cfc2966186317a989fb1b5512255ad9ea8792c5cd88f8f3463e12983ad327618",
+  "production_modules": [
+    "convert_weights",
+    "evaluate",
+    "sonic_torch",
+    "tensor_adapter"
+  ],
+  "inference_evidence_hashes_verified": true,
+  "no_actual_global_position_or_linear_velocity": true,
+  "model_local_converter_and_tensor_adapter": true,
+  "no_private_server_paths_or_seed_mjlab_imports_in_production_modules": true,
+  "initialized_core_submodule": true,
+  "independent_locked_environment_and_cli_verified": true,
+  "current_dataset_commands_documented": true,
+  "scope": "Independent source, dependency and documentation delivery; dataset outcomes are reported separately."
+}
